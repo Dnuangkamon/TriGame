@@ -1,21 +1,21 @@
-### TriGame
+# TriGame
 
-# Description
+## Description
 
-# Objective 
+## Objective 
 
-# Working Principle
+## Working Principle
 
-# Model
+## Model
 
-# Benefit
+## Benefit
 
-# Tools
+## Tools
 
-# Website
+## Website
 
-# Presentation
+## Presentation
 
-# Poster
+## Poster
 
-# Developer
+## Developer
