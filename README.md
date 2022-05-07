@@ -21,7 +21,7 @@
 ## Developer
 | Student ID | Name - Surname |  Responsible | Github |
 | :-------- | :-------- | :--------- |:--------- |
-| 64070025 | นางสาวฐิติภา เอี่ยมสิริวงศ์ | Tictactoe game |
-| 64070146 | นายณัฐพล ดิษฐวิบูลย์ | Rockpaperscissor game |
-| 64070149 | นางสาวดวงกมล พบสูงเนิน | Design and data |
-| 64070175 | นางสาวบุษบาวรรณ ประเสริฐสุข | Hangman game |
+| 64070025 | นางสาวฐิติภา เอี่ยมสิริวงศ์ | Tictactoe game | https://github.com/PR-800 |
+| 64070146 | นายณัฐพล ดิษฐวิบูลย์ | Rockpaperscissor game | https://github.com/Bug9Best |
+| 64070149 | นางสาวดวงกมล พบสูงเนิน | Design and data | https://github.com/Dnuangkamon |
+| 64070175 | นางสาวบุษบาวรรณ ประเสริฐสุข | Hangman game | https://github.com/BusabawanPrasertsuk |
