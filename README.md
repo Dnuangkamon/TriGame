@@ -22,8 +22,7 @@
 ## Presentation
 
 ## Poster
-[WordDisplay](https://media.discordapp.net/attachments/859036086319710208/972434195110588466/Compro-poster.png?width=468&height=663)
-[![image][https://media.discordapp.net/attachments/918375486315434034/972429661269282907/unknown.png?width=467&height=662](https://media.discordapp.net/attachments/918375486315434034/972429661269282907/unknown.png?width=467&height=662)
+[Poster TriGame](https://media.discordapp.net/attachments/859036086319710208/972434195110588466/Compro-poster.png?width=468&height=663)
 
 ## Developer
 | Student ID | Name - Surname |  Responsible | Github |
