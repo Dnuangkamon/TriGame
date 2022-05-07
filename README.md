@@ -17,7 +17,7 @@
 ## Presentation
 
 ## Poster
-[![Poster TriGame][clickToLink](https://media.discordapp.net/attachments/918375486315434034/972429661269282907/unknown.png?width=467&height=662k)
+[Poster TriGame](https://media.discordapp.net/attachments/918375486315434034/972429661269282907/unknown.png?width=467&height=662k)
 
 ## Developer
 | Student ID | Name - Surname |  Responsible | Github |
