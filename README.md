@@ -1,5 +1,5 @@
 # TriGame
-'ชวนคุณมารู้จัก 3 เกม ใน TriGame ได้แก่ Hangman, Tic tac toe, Rock paper scissor'
+`ชวนคุณมารู้จัก 3 เกม ใน TriGame ได้แก่ Hangman, Tic tac toe, Rock paper scissor`
 ## Description
 >โปรเจคนี้เป็นส่วนหนึ่งของวิชา Computer programming จัดทำขึ้นโดยมีวัตถุประสงค์เพื่อนำความรู้ที่ได้รับจากศึกษาการเขียนโปรแกรมภาษา C มาต่อยอดในการสร้างเกม โดยแบ่งออกเป็น 3 เกมหลักๆ ซึ่งจะมี
 >
