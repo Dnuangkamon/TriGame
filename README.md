@@ -17,6 +17,7 @@
 ## Presentation
 
 ## Poster
+[![image][https://media.discordapp.net/attachments/918375486315434034/972429661269282907/unknown.png?width=467&height=662](https://media.discordapp.net/attachments/918375486315434034/972429661269282907/unknown.png?width=467&height=662)
 
 ## Developer
 | Student ID | Name - Surname |  Responsible | Github |
