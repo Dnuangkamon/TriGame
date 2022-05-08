@@ -34,9 +34,9 @@ int checkGameValue(int value)
 		break;
 
 	case 2:
-		printf("You want to play Tic Tic Toe right? (y/n) : ");
+		printf("You want to play Tic Tac Toe right? (y/n) : ");
 		scanf(" %s", confirm);
-		(strcmp(confirm, "y") == 0) ? (0) : main();
+		(strcmp(confirm, "y") == 0) ? (TicTacToe()) : main();
 		break;
 
 	case 3:
@@ -114,4 +114,146 @@ int rockPaperScissor()
 	}
 
 	return 0;
+}
+
+int TicTacToe() {
+	char board[3][3], player, computer, winner, playAgain, command;
+	int row, column, spaces;
+
+	printf("\e[1;1H\e[2J"); // Clear screen terminal
+
+	// player choose side
+	printf("Which side do you want to play? (X/O): ");
+	scanf(" %c", &player);
+	player = toupper(player);
+	if (player == 'X') {
+		computer = 'O';
+	}
+	else {
+		computer = 'X';
+	}
+
+	do {
+		// reset board
+		for(int i=0; i<3; i++) {
+	    	for(int j=0; j<3; j++) {
+	        	board[i][j] = ' ';
+	    	}
+		}
+		winner = ' ';
+		playAgain = ' ';
+
+		while(winner == ' ' && spaces != 0) {
+			// check board spaces
+			spaces = 9;
+			for(int i = 0; i < 3; i++) {
+		    	for(int j = 0; j < 3; j++) {
+		        	if(board[i][j] != ' ') {
+		        		spaces -= 1;
+		        	}
+		    	}
+			}
+
+			// print board
+        	printf(" %c | %c | %c ", board[0][0], board[0][1], board[0][2]);
+			printf("\n---|---|---\n");
+			printf(" %c | %c | %c ", board[1][0], board[1][1], board[1][2]);
+			printf("\n---|---|---\n");
+			printf(" %c | %c | %c ", board[2][0], board[2][1], board[2][2]);
+			printf("\n");
+
+        	// player move
+        	while(1) {
+				printf("Enter row #(1-3): ");
+				scanf("%d", &row);
+				row -= 1;
+
+				printf("Enter column #(1-3): ");
+				scanf("%d", &column);
+				column -= 1;
+
+				if(board[row][column] != ' ') {
+					printf("ERROR : Invalid move ; Please try again.\n");
+				}
+				else {
+					board[row][column] = player;
+					break;
+				}
+			}
+
+			// check winner on board
+        	for(int i=0; i<3; i++) {
+				if((board[i][0] == board[i][1]) && (board[i][0] == board[i][2])) {
+		        	winner = board[i][0];
+		    	}
+		    	else if((board[0][i] == board[1][i]) && (board[0][i] == board[2][i])) {
+		        	winner = board[0][i];
+		    	}
+		    	else if(((board[0][0] == board[1][1]) && (board[0][0] == board[2][2])) || ((board[0][2] == board[1][1]) && (board[0][2] == board[2][0]))) {
+			    	winner = board[1][1];
+				}
+			}
+        	if(winner != ' ' || spaces == 0) {
+        		break;
+    		}
+
+			// computer move
+			srand(time(0));
+			if(spaces > 0) {
+		    	while(1) {
+		        	row = rand() % 3;
+		        	column = rand() % 3;
+		        	if (board[row][column] == ' ') {
+		        		board[row][column] = computer;
+		        		break;
+					}
+				}
+			}
+
+			// check winner on board
+        	for(int i=0; i<3; i++) {
+				if((board[i][0] == board[i][1]) && (board[i][0] == board[i][2])) {
+		        	winner = board[i][0];
+		    	}
+		    	else if((board[0][i] == board[1][i]) && (board[0][i] == board[2][i])) {
+		        	winner = board[0][i];
+		    	}
+		    	else if(((board[0][0] == board[1][1]) && (board[0][0] == board[2][2])) || ((board[0][2] == board[1][1]) && (board[0][2] == board[2][0]))) {
+			    	winner = board[1][1];
+				}
+			}
+			if(winner != ' ' || spaces == 0) {
+        		break;
+        	}
+    	}
+
+		// print final board
+		printf(" %c | %c | %c ", board[0][0], board[0][1], board[0][2]);
+		printf("\n---|---|---\n");
+		printf(" %c | %c | %c ", board[1][0], board[1][1], board[1][2]);
+		printf("\n---|---|---\n");
+		printf(" %c | %c | %c ", board[2][0], board[2][1], board[2][2]);
+		printf("\n");
+
+		if(winner == player) {
+			printf("Congratulations! You win!");
+		}
+		else if(winner == computer) {
+    		printf("Game over! Computer win!");
+		}
+		else {
+			printf("Neck and neck! Game draw!");
+		}
+
+		do  {
+			printf("\nWould you like to play this game again? (Y/N): ");
+			scanf(" %c", &playAgain);
+			playAgain = toupper(playAgain);
+			if (playAgain != 'N' && playAgain != 'Y') {
+				printf("Error : Invalid command ; Please try again.\n");
+			}
+		} while (playAgain != 'N' && playAgain != 'Y');
+	} while (playAgain == 'Y');
+
+	main();
 }
