@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
@@ -130,7 +131,8 @@ int rockPaperScissor()
 	return 0;
 }
 
-int TicTacToe() {
+int TicTacToe()
+{
 	char board[3][3], player, computer, winner, playAgain, command;
 	int row, column, spaces;
 
@@ -140,44 +142,54 @@ int TicTacToe() {
 	printf("Which side do you want to play? (X/O): ");
 	scanf(" %c", &player);
 	player = toupper(player);
-	if (player == 'X') {
+	if (player == 'X')
+	{
 		computer = 'O';
 	}
-	else {
+	else
+	{
 		computer = 'X';
 	}
 
-	do {
+	do
+	{
 		// reset board
-		for(int i=0; i<3; i++) {
-	    	for(int j=0; j<3; j++) {
-	        	board[i][j] = ' ';
-	    	}
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				board[i][j] = ' ';
+			}
 		}
 		winner = ' ';
 		playAgain = ' ';
 
-		while(winner == ' ' && spaces != 0) {
+		while (winner == ' ' && spaces != 0)
+		{
 			// check board spaces
 			spaces = 9;
-			for(int i = 0; i < 3; i++) {
-		    	for(int j = 0; j < 3; j++) {
-		        	if(board[i][j] != ' ') {
-		        		spaces -= 1;
-		        	}
-		    	}
+			for (int i = 0; i < 3; i++)
+			{
+				for (int j = 0; j < 3; j++)
+				{
+					if (board[i][j] != ' ')
+					{
+						spaces -= 1;
+					}
+				}
 			}
 
 			// print board
-        	printf(" %c | %c | %c ", board[0][0], board[0][1], board[0][2]);
+			printf(" %c | %c | %c ", board[0][0], board[0][1], board[0][2]);
 			printf("\n---|---|---\n");
 			printf(" %c | %c | %c ", board[1][0], board[1][1], board[1][2]);
 			printf("\n---|---|---\n");
 			printf(" %c | %c | %c ", board[2][0], board[2][1], board[2][2]);
 			printf("\n");
 
-        	// player move
-        	while(1) {
+			// player move
+			while (1)
+			{
 				printf("Enter row #(1-3): ");
 				scanf("%d", &row);
 				row -= 1;
@@ -186,60 +198,75 @@ int TicTacToe() {
 				scanf("%d", &column);
 				column -= 1;
 
-				if(board[row][column] != ' ') {
+				if (board[row][column] != ' ')
+				{
 					printf("ERROR : Invalid move ; Please try again.\n");
 				}
-				else {
+				else
+				{
 					board[row][column] = player;
 					break;
 				}
 			}
 
 			// check winner on board
-        	for(int i=0; i<3; i++) {
-				if((board[i][0] == board[i][1]) && (board[i][0] == board[i][2])) {
-		        	winner = board[i][0];
-		    	}
-		    	else if((board[0][i] == board[1][i]) && (board[0][i] == board[2][i])) {
-		        	winner = board[0][i];
-		    	}
-		    	else if(((board[0][0] == board[1][1]) && (board[0][0] == board[2][2])) || ((board[0][2] == board[1][1]) && (board[0][2] == board[2][0]))) {
-			    	winner = board[1][1];
+			for (int i = 0; i < 3; i++)
+			{
+				if ((board[i][0] == board[i][1]) && (board[i][0] == board[i][2]))
+				{
+					winner = board[i][0];
+				}
+				else if ((board[0][i] == board[1][i]) && (board[0][i] == board[2][i]))
+				{
+					winner = board[0][i];
+				}
+				else if (((board[0][0] == board[1][1]) && (board[0][0] == board[2][2])) || ((board[0][2] == board[1][1]) && (board[0][2] == board[2][0])))
+				{
+					winner = board[1][1];
 				}
 			}
-        	if(winner != ' ' || spaces == 0) {
-        		break;
-    		}
+			if (winner != ' ' || spaces == 0)
+			{
+				break;
+			}
 
 			// computer move
 			srand(time(0));
-			if(spaces > 0) {
-		    	while(1) {
-		        	row = rand() % 3;
-		        	column = rand() % 3;
-		        	if (board[row][column] == ' ') {
-		        		board[row][column] = computer;
-		        		break;
+			if (spaces > 0)
+			{
+				while (1)
+				{
+					row = rand() % 3;
+					column = rand() % 3;
+					if (board[row][column] == ' ')
+					{
+						board[row][column] = computer;
+						break;
 					}
 				}
 			}
 
 			// check winner on board
-        	for(int i=0; i<3; i++) {
-				if((board[i][0] == board[i][1]) && (board[i][0] == board[i][2])) {
-		        	winner = board[i][0];
-		    	}
-		    	else if((board[0][i] == board[1][i]) && (board[0][i] == board[2][i])) {
-		        	winner = board[0][i];
-		    	}
-		    	else if(((board[0][0] == board[1][1]) && (board[0][0] == board[2][2])) || ((board[0][2] == board[1][1]) && (board[0][2] == board[2][0]))) {
-			    	winner = board[1][1];
+			for (int i = 0; i < 3; i++)
+			{
+				if ((board[i][0] == board[i][1]) && (board[i][0] == board[i][2]))
+				{
+					winner = board[i][0];
+				}
+				else if ((board[0][i] == board[1][i]) && (board[0][i] == board[2][i]))
+				{
+					winner = board[0][i];
+				}
+				else if (((board[0][0] == board[1][1]) && (board[0][0] == board[2][2])) || ((board[0][2] == board[1][1]) && (board[0][2] == board[2][0])))
+				{
+					winner = board[1][1];
 				}
 			}
-			if(winner != ' ' || spaces == 0) {
-        		break;
-        	}
-    	}
+			if (winner != ' ' || spaces == 0)
+			{
+				break;
+			}
+		}
 
 		// print final board
 		printf(" %c | %c | %c ", board[0][0], board[0][1], board[0][2]);
@@ -249,21 +276,26 @@ int TicTacToe() {
 		printf(" %c | %c | %c ", board[2][0], board[2][1], board[2][2]);
 		printf("\n");
 
-		if(winner == player) {
+		if (winner == player)
+		{
 			printf("Congratulations! You win!");
 		}
-		else if(winner == computer) {
-    		printf("Game over! Computer win!");
+		else if (winner == computer)
+		{
+			printf("Game over! Computer win!");
 		}
-		else {
+		else
+		{
 			printf("Neck and neck! Game draw!");
 		}
 
-		do  {
+		do
+		{
 			printf("\nWould you like to play this game again? (Y/N): ");
 			scanf(" %c", &playAgain);
 			playAgain = toupper(playAgain);
-			if (playAgain != 'N' && playAgain != 'Y') {
+			if (playAgain != 'N' && playAgain != 'Y')
+			{
 				printf("Error : Invalid command ; Please try again.\n");
 			}
 		} while (playAgain != 'N' && playAgain != 'Y');
