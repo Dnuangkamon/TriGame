@@ -6,6 +6,8 @@
 
 int checkGameValue(int value);
 int rockPaperScissor();
+int hangMan();
+int ticTacToe();
 
 int main()
 {
@@ -30,13 +32,13 @@ int checkGameValue(int value)
 	case 1:
 		printf("You want to play Hangman right? (y/n) : ");
 		scanf(" %s", confirm);
-		(strcmp(confirm, "y") == 0) ? (0) : main();
+		(strcmp(confirm, "y") == 0) ? hangMan() : main();
 		break;
 
 	case 2:
 		printf("You want to play Tic Tic Toe right? (y/n) : ");
 		scanf(" %s", confirm);
-		(strcmp(confirm, "y") == 0) ? (0) : main();
+		(strcmp(confirm, "y") == 0) ? ticTacToe() : main();
 		break;
 
 	case 3:
@@ -48,6 +50,16 @@ int checkGameValue(int value)
 	default:
 		main();
 	}
+}
+
+int hangMan()
+{
+	printf("\e[1;1H\e[2J"); // Clear screen terminal
+}
+
+int ticTacToe()
+{
+	printf("\e[1;1H\e[2J"); // Clear screen terminal
 }
 
 int rockPaperScissor()
