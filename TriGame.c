@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
-#include <ctype.h>
 
 #define WORDS 15
 #define WORDLEN 40
 #define MISS 6
 
 int checkGameValue(int value);
-int rockPaperScissor();
-int hangman();
+int rockPaperScissor(int value);
+int hangman(int value);
 int TicTacToe();
 
 int main()
@@ -31,22 +31,6 @@ int main()
 	checkGameValue(selectedGameValue);
 }
 
-int playAgain(){
-	char command;
-	printf("Play Again press 'a' button.\n");
-	printf("Select Game press 's' button.\n");
-	scanf(" %c", &command);
-	if (command == 'a')
-	{
-		rockPaperScissor();
-	}
-	else if (command == 's')
-	{
-		main();
-	}
-
-}
-
 int checkGameValue(int value)
 {
 	char confirm[3];
@@ -55,7 +39,7 @@ int checkGameValue(int value)
 	case 1:
 		printf("You want to play Hangman right? (y/n) : ");
 		scanf(" %s", confirm);
-		(strcmp(confirm, "y") == 0) ? hangman() : main();
+		(strcmp(confirm, "y") == 0) ? hangman(value) : main();
 		break;
 
 	case 2:
@@ -67,7 +51,7 @@ int checkGameValue(int value)
 	case 3:
 		printf("You want to play Rock Paper Scissor right? (y/n) : ");
 		scanf(" %s", confirm);
-		(strcmp(confirm, "y") == 0) ? rockPaperScissor() : main();
+		(strcmp(confirm, "y") == 0) ? rockPaperScissor(value) : main();
 		break;
 
 	default:
@@ -75,7 +59,40 @@ int checkGameValue(int value)
 	}
 }
 
-int rockPaperScissor()
+int playAgain(int value)
+{
+	char command;
+	printf("Would you like to play this game again? (Y/N): ");
+	scanf(" %c", &command);
+	command = tolower(command);
+	if (command == 'y')
+	{
+		switch (value)
+		{
+		case 1:
+			hangman(value);
+			break;
+
+		case 3:
+			rockPaperScissor(value);
+			break;
+
+		default:
+			break;
+		}
+	}
+	else if (command == 'n')
+	{
+		main();
+	}
+	else
+	{
+		printf("Error : Invalid command ; Please try again.\n\n");
+		playAgain(value);
+	}
+}
+
+int rockPaperScissor(int value)
 {
 	printf("\e[1;1H\e[2J"); // Clear screen terminal
 
@@ -126,7 +143,7 @@ int rockPaperScissor()
 	printf("You choose : %c\n", you);
 	printf("Computer choose : %c\n", computer);
 	printf("-----------------------------\n");
-	playAgain();
+	playAgain(value);
 
 	return 0;
 }
@@ -180,6 +197,7 @@ int TicTacToe()
 			}
 
 			// print board
+			printf("\e[1;1H\e[2J"); // Clear screen terminal
 			printf(" %c | %c | %c ", board[0][0], board[0][1], board[0][2]);
 			printf("\n---|---|---\n");
 			printf(" %c | %c | %c ", board[1][0], board[1][1], board[1][2]);
@@ -269,6 +287,7 @@ int TicTacToe()
 		}
 
 		// print final board
+		printf("\e[1;1H\e[2J"); // Clear screen terminal
 		printf(" %c | %c | %c ", board[0][0], board[0][1], board[0][2]);
 		printf("\n---|---|---\n");
 		printf(" %c | %c | %c ", board[1][0], board[1][1], board[1][2]);
@@ -306,114 +325,146 @@ int TicTacToe()
 
 bool srand_called = false;
 // function random number
-int num_rmd(int i) {
-    if (!srand_called) {
-        srand(time(NULL) << 15);
-        srand_called = true;
-    }
-    return rand() % i;
+int num_rmd(int i)
+{
+	if (!srand_called)
+	{
+		srand(time(NULL) << 15);
+		srand_called = true;
+	}
+	return rand() % i;
 }
 
-//function print hungbody
-void printhang(int mistakes, char* body) {
-    printf("\tMistakes :%d\n", mistakes);
-    switch(mistakes) {
-        case 6: body[6] = '\\'; break;
-        case 5: body[5] = '/'; break;
-        case 4: body[4] = '\\'; break;
-        case 3: body[3] = '|'; break;
-        case 2: body[2] = '/'; break;
-        case 1: body[1] = ')', body[0] = '('; break;
-        default: break;
-    }
-    printf("\t _________\n"
-       "\t|         |\n"
-       "\t|        %c %c\n"
-       "\t|        %c%c%c\n"
-       "\t|        %c %c\n"
-       "\t|             \n"
-       "\t| ", body[0], body[1], body[2],
-       body[3], body[4], body[5], body[6]);
+// function print hungbody
+void printhang(int mistakes, char *body)
+{
+	printf("Mistakes :%d\n", mistakes);
+	switch (mistakes)
+	{
+	case 6:
+		body[6] = '\\';
+		break;
+	case 5:
+		body[5] = '/';
+		break;
+	case 4:
+		body[4] = '\\';
+		break;
+	case 3:
+		body[3] = '|';
+		break;
+	case 2:
+		body[2] = '/';
+		break;
+	case 1:
+		body[1] = ')', body[0] = '(';
+		break;
+	default:
+		break;
+	}
+	printf(" _________\n"
+				 "|         |\n"
+				 "|        %c %c\n"
+				 "|        %c%c%c\n"
+				 "|        %c %c\n"
+				 "|             \n"
+				 "| ",
+				 body[0], body[1], body[2],
+				 body[3], body[4], body[5], body[6]);
 }
 
 // function print word
-void printtext(char* player, int len) {
-    printf("\t");
-    for (int i = 0; i < len; ++i){
-        printf("%c ", player[i]);
-    }
-    printf("\n\n");
+void printtext(char *player, int len)
+{
+	printf("\n");
+	for (int i = 0; i < len; ++i)
+	{
+		printf("%c ", player[i]);
+	}
+	printf("\n\n");
 }
- 
-int hangman() {
-    printf("\n\t Make sure before you put word you can be hanged!!.");
-    printf("\n\n\t Rules : ");
-    printf("\n\t -> Up to 6 mistakes are allowed.");
-    printf("\n\t -> All alphabet are in 'LOWER CASE'.");
-    printf("\n\t -> All words are name of -- IT category --");
-    printf("\n\t -> :) Enjoy your playing!! .");
-    printf("\n\t Syntax : Alphabet");
-    printf("\n\t Example : a \n\n");
-    char text[WORDS][WORDLEN] = {"bandwidth", "appication", "buffer", "database", "directory", "domain", "harddisk", "firewall", "malware", "network",
-	"cache", "encryption", "ethernet", "hardware", "software"};
-    char *body = malloc(MISS+1);
-    int id = num_rmd(WORDS);
-    char *word = (text[id]);
-    int len = strlen(word);
-    char *guessed = malloc(len);
-    char falseWord[MISS];
-    memset(body, ' ', MISS+1);
-    memset(guessed, '_', len);
-    char player;
-    bool found;
-    char* win;
-    int mistakes = 0;
-    setvbuf(stdin, NULL, _IONBF, 0);
- 
-    do {
-        found = false;
-        printf("\n\n");
-        printhang(mistakes, body);
-        printf("\n\n");
-        printf("\tFalse Letters : ");
-        if(mistakes == 0) printf("None\n");
-        for (int i = 0; i < mistakes; ++i){
-            printf("%c ", falseWord[i]);
-        }
-        printf("\n\n");
-        printtext(guessed, len);
-        printf("\tGive me a alphabet in lower case : ");
-        do {
-            scanf("%c",&player);
-        } 
-        while ( getchar() != '\n' );
-        for (int i = 0; i < len; ++i){
-            if(word[i] == player) {
-                found = true;
-                guessed[i] = player;
-            }
-        }
-        if(!found) {
-            falseWord[mistakes] = player;
-            mistakes += 1;
-        }
-        win = strchr(guessed, '_');
-    }
 
-    while(mistakes < MISS && win != NULL);
-    if(win == NULL){
-        printf("\n");
-        printtext(guessed, len);
-        printf("\n\tCongrats! You have won : %s\n\n", word);
-    }
-    else {
-        printf("\n");
-        printhang(mistakes, body);
-        printf("FAIL!! ;-;");
-        printf("\n\n\tBetter try next time. Word was --> %s\n\n", word);
-    }
-    free(body);
-    free(word);
-    free(guessed);
-    return EXIT_SUCCESS;
+int hangman(int value)
+{
+	char text[WORDS][WORDLEN] = {"bandwidth", "application", "buffer", "database", "directory", "domain", "harddisk", "firewall", "malware", "network",
+															 "cache", "encryption", "ethernet", "hardware", "software"};
+	char *body = malloc(MISS + 1);
+	int id = num_rmd(WORDS);
+	char *word = (text[id]);
+	int len = strlen(word);
+	char *guessed = malloc(len);
+	char falseWord[MISS];
+	memset(body, ' ', MISS + 1);
+	memset(guessed, '_', len);
+	char player;
+	bool found;
+	char *win;
+	int mistakes = 0;
+	setvbuf(stdin, NULL, _IONBF, 0);
+
+	do
+	{
+		found = false;
+		printf("\e[1;1H\e[2J"); // Clear screen terminal
+		printf("\n Make sure before you put word you can be hanged!!.");
+		printf("\n\n Rules : ");
+		printf("\n -> Up to 6 mistakes are allowed.");
+		printf("\n -> All words are name of -- IT category --");
+		printf("\n -> :) Enjoy your playing!! .");
+		printhang(mistakes, body);
+		printf("\n\n");
+		printf("False Letters : ");
+		if (mistakes == 0)
+			printf("None\n");
+		for (int i = 0; i < mistakes; ++i)
+		{
+			printf("%c ", falseWord[i]);
+		}
+		printf("\n");
+		printtext(guessed, len);
+		printf("Give me a alphabet (ex. a): ");
+		do
+		{
+			scanf("%c", &player);
+			player = tolower(player);
+		} while (getchar() != '\n');
+
+		for (int i = 0; i < len; ++i)
+		{
+			if (word[i] == player)
+			{
+				found = true;
+				guessed[i] = player;
+			}
+		}
+
+		if (!found)
+		{
+			falseWord[mistakes] = player;
+			mistakes += 1;
+		}
+		win = strchr(guessed, '_');
+	}
+
+	while (mistakes < MISS && win != NULL);
+	if (win == NULL)
+	{
+		printf("\n");
+		printtext(guessed, len);
+		printf("\nCongrats! You have won : %s\n\n", word);
+		playAgain(value);
+	}
+	else
+	{
+		printf("\n");
+		printhang(mistakes, body);
+		printf("FAIL!! ;-;");
+		printf("\n\nBetter try next time. Word was --> %s\n\n", word);
+		playAgain(value);
+	}
+	free(body);
+	free(word);
+	free(guessed);
+
+	return EXIT_SUCCESS;
 }
