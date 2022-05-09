@@ -55,7 +55,7 @@
 > 
 > 1.Dev C++
 > 
-> 2.Command Prompt
+> 2.Visual Studio Code
 
 
 ## Presentation 🎥
