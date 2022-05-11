@@ -410,7 +410,7 @@ int hangman(int value)
 		printf("\n\n Rules : ");
 		printf("\n -> Up to 6 mistakes are allowed.");
 		printf("\n -> All words are name of -- IT category --");
-		printf("\n -> :) Enjoy your playing!! .");
+		printf("\n -> :) Enjoy your playing!! .\n");
 		printhang(mistakes, body);
 		printf("\n\n");
 		printf("False Letters : ");
@@ -463,8 +463,6 @@ int hangman(int value)
 		playAgain(value);
 	}
 	free(body);
-	free(word);
 	free(guessed);
-
 	return EXIT_SUCCESS;
 }
