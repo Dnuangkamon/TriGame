@@ -55,13 +55,14 @@
 > 
 > 1.Dev C++
 > 
-> 2.Command Prompt
-
+> 2.Visual Studio Code
 
 ## Presentation 🎥
 >**`วิดีโอแนะนำการเล่น`**
+>**[Video TriGame](https://youtu.be/ZvATbhXULls)**
 
 ## Poster 🎨
+>**`ภาพโปสเตอร์`**
 **[Poster TriGame](https://media.discordapp.net/attachments/859036086319710208/972434195110588466/Compro-poster.png?width=468&height=663)**
 
 ## Developer
