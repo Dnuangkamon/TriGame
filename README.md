@@ -1,4 +1,4 @@
-# TriGame
+# Project name : TriGame
 `ชวนคุณมารู้จัก 3 เกม ใน TriGame ได้แก่ Hangman, Tic tac toe, Rock paper scissor`
 ## Description
 >**`คำอธิบาย`**
